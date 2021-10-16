@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update>
+    <sys_documentation element="debug_level" label="Debug Level" language="en" table="x_173073_integrati_integration_profile">
+        <sys_documentation action="INSERT_OR_UPDATE">
+            <element>debug_level</element>
+            <help/>
+            <hint/>
+            <label>Debug Level</label>
+            <language>en</language>
+            <name>x_173073_integrati_integration_profile</name>
+            <plural>Debug Levels</plural>
+            <sys_class_name>sys_documentation</sys_class_name>
+            <sys_created_by>admin</sys_created_by>
+            <sys_created_on>2021-10-12 09:24:47</sys_created_on>
+            <sys_id>cb7c38d31b433010fc9540c6cc4bcb51</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>Debug Level</sys_name>
+            <sys_package display_value="Integration Practice" source="x_173073_integrati">aa31b0531b033010fc9540c6cc4bcbd7</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="Integration Practice">aa31b0531b033010fc9540c6cc4bcbd7</sys_scope>
+            <sys_update_name>sys_documentation_x_173073_integrati_integration_profile_debug_level_en</sys_update_name>
+            <sys_updated_by>admin</sys_updated_by>
+            <sys_updated_on>2021-10-12 09:24:47</sys_updated_on>
+            <url/>
+            <url_target/>
+        </sys_documentation>
+    </sys_documentation>
+</record_update>

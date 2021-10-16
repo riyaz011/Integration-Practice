@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_script_include">
+    <sys_script_include action="INSERT_OR_UPDATE">
+        <access>package_private</access>
+        <active>true</active>
+        <api_name>x_173073_integrati.manage_api_connections</api_name>
+        <caller_access/>
+        <client_callable>false</client_callable>
+        <description/>
+        <name>manage_api_connections</name>
+        <script><![CDATA[var manage_api_connections = Class.create();
+manage_api_connections.prototype = {
+
+
+    initialize: function() {
+        //Initialize with loggin information and shared variables
+        this._prefix_log_info = "\n----> Integration logging Script Include manage_api_connections() INFO\n";
+        this._prefix_log_debug = "\n----> Integration logging Script Include manage_api_connections() DEBUG\n";
+        this._prefix_log_end = "\n<---- END\n";
+        this.integration_info = [];
+        this._debug_level = "INFO";
+    },
+
+    //Log the information or debug information
+    _log_information: function(_string_in, _debug_tag) {
+        //Check the proper based on the debug_level
+        try {
+            if (_string_in) {
+                if (this._debug_level == "INFO" && _debug_tag == this._debug_level) {
+                    gs.info("{0}{1}{2}", [this._prefix_log_info, _string_in, this._prefix_log_end]);
+                }
+                if (this._debug_level == "DEBUG" && _debug_tag == this._debug_level) {
+                    gs.debug("{0}{1}{2}", [this._prefix_log_debug, _string_in, this._prefix_log_end]);
+                }
+                if (this._debug_level == "NONE") {
+                    return;
+                }
+            }
+        } catch (ex) {
+            gs.info("{0} The function _log_information is erroring out\n {1}{2}", [this._prefix_log_info, ex, this._prefix_log_end]);
+        }
+    },
+	
+	_collect_profile_information: function(_profile_id)
+	{
+		//pull the information from integration profile and end points
+		try
+		{
+			var profile_info = {};
+			
+			if(_profile_id)
+				{
+					var _grIntegrationProfile = new GlideRecord('x_173073_integrati_integration_profile');
+					_grIntegrationProfile.addActiveQuery('active');
+					if(_grIntegrationProfile.get('integration_profile_name',_profile_id))
+						{
+							profile_info.intUser = _grIntegrationProfile.getValue('integration_user') + '';
+							profile_info.intUserPass = _grIntegrationProfile.integration_user_passoword.getDecryptedValue();
+							profile_info.intMidSer = _grIntegrationProfile.getDisplayValue('mid_server') + '';
+							profile_info.debugLevel = _grIntegrationProfile.getValue('debug_level') + '';
+							profile_info.serverIPAdd = _grIntegrationProfile.getValue('server_ip_address') + '';
+							profile_info.profileSysId = _grIntegrationProfile.getValue('sys_id') + '';
+							profile_info.authenticationType = _grIntegrationProfile.getValue('authentication_type') + '';
+							
+							this.debug_level = profile_info.debugLevel.toString();
+							this.integration_info.push(profile_info);
+							this._log_information('From function _collect_profile_information : \n Integration User Password \t'+profile_info.intUserPass.toString(), 'DEBUG');
+						}
+					
+				}
+			
+			
+		}
+		catch(ex)
+			{
+				gs.info('{0} The function _collect_profile_information is erroring out\n {1}{2}',[this._prefix_log_info, ex, this._prefix_log_end]);
+			}
+	},
+	
+	
+
+    type: 'manage_api_connections'
+};]]></script>
+        <sys_class_name>sys_script_include</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2021-10-12 08:51:52</sys_created_on>
+        <sys_id>c291b05b1b033010fc9540c6cc4bcbe0</sys_id>
+        <sys_mod_count>9</sys_mod_count>
+        <sys_name>manage_api_connections</sys_name>
+        <sys_package display_value="Integration Practice" source="x_173073_integrati">aa31b0531b033010fc9540c6cc4bcbd7</sys_package>
+        <sys_policy>read</sys_policy>
+        <sys_scope display_value="Integration Practice">aa31b0531b033010fc9540c6cc4bcbd7</sys_scope>
+        <sys_update_name>sys_script_include_c291b05b1b033010fc9540c6cc4bcbe0</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2021-10-12 10:17:28</sys_updated_on>
+    </sys_script_include>
+</record_update>

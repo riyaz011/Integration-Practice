@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?><database>
+    <element label="Integration Profile" max_length="40" name="x_173073_integrati_integration_profile" sizeclass="1" type="collection">
+        <element default="true" label="Active" max_length="40" name="active" type="boolean"/>
+        <element choice="1" label="Authentication Type" max_length="4000" name="authentication_type" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="Basic" value="basic"/>
+                <element inactive_on_update="false" label="O Auth" value="o_auth"/>
+            </choice>
+        </element>
+        <element choice="1" label="Debug Level" max_length="4000" name="debug_level" type="choice">
+            <choice>
+                <element inactive_on_update="false" label="DEBUG" value="DEBUG"/>
+                <element inactive_on_update="false" label="INFO" value="INFO"/>
+            </choice>
+        </element>
+        <element label="Profile name" max_length="40" name="integration_profile_name" type="string"/>
+        <element label="Integration User" max_length="40" name="integration_user" type="string"/>
+        <element label="Integration User Passoword" max_length="255" name="integration_user_passoword" type="password2"/>
+        <element label="Mid Server" max_length="32" name="mid_server" reference="ecc_agent" type="reference"/>
+        <element label="Server IP Address" max_length="40" name="server_ip_address" type="ip_addr"/>
+        <index name="index">
+            <element name="mid_server"/>
+        </index>
+    </element>
+</database>
