@@ -12,6 +12,7 @@ manage_api_connections.prototype = {
 
 
     initialize: function() {
+		
         //Initialize with loggin information and shared variables
         this._prefix_log_info = "\n----> Integration logging Script Include manage_api_connections() INFO\n";
         this._prefix_log_debug = "\n----> Integration logging Script Include manage_api_connections() DEBUG\n";
@@ -23,6 +24,7 @@ manage_api_connections.prototype = {
     //Log the information or debug information
     _log_information: function(_string_in, _debug_tag) {
         //Check the proper based on the debug_level
+		
         try {
             if (_string_in) {
                 if (this._debug_level == "INFO" && _debug_tag == this._debug_level) {
@@ -43,6 +45,7 @@ manage_api_connections.prototype = {
 	_collect_profile_information: function(_profile_id)
 	{
 		//pull the information from integration profile and end points
+		
 		try
 		{
 			var profile_info = {};
@@ -53,6 +56,7 @@ manage_api_connections.prototype = {
 					_grIntegrationProfile.addActiveQuery('active');
 					if(_grIntegrationProfile.get('integration_profile_name',_profile_id))
 						{
+							
 							profile_info.intUser = _grIntegrationProfile.getValue('integration_user') + '';
 							profile_info.intUserPass = _grIntegrationProfile.integration_user_passoword.getDecryptedValue();
 							profile_info.intMidSer = _grIntegrationProfile.getDisplayValue('mid_server') + '';
@@ -63,7 +67,23 @@ manage_api_connections.prototype = {
 							
 							this.debug_level = profile_info.debugLevel.toString();
 							this.integration_info.push(profile_info);
-							this._log_information('From function _collect_profile_information : \n Integration User Password \t'+profile_info.intUserPass.toString(), 'DEBUG');
+							
+							this._log_information("Integration Profile \n"+JSON.stringify(this.integration_info[0]), 'INFO');
+							
+							//return profile info object
+							if(this.integration_info[0])
+								{
+									return (this.integration_info[0]);
+								}
+							else
+								{
+									return (false);
+								}
+						}
+					else
+						{
+							this._log_information("The profile id : " + _profile_id + " was not available", "INFO");
+							return (false);
 						}
 					
 				}
@@ -76,6 +96,24 @@ manage_api_connections.prototype = {
 			}
 	},
 	
+	_collect_endpoints: function(_profile_id)
+	{
+		try
+			{
+				if(_profile_id)
+					{
+						
+					}
+				else
+					{
+						this._log_information("Please pass a Profile ID. You are passing null", "INFO");
+					}
+			}
+		catch(ex)
+			{
+				gs.info('{0} The function _collect_endpoints is erroring out\n {1}{2}',[this._prefix_log_info, ex, this._prefix_log_end]);
+			}
+	},
 	
 
     type: 'manage_api_connections'
@@ -84,13 +122,13 @@ manage_api_connections.prototype = {
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2021-10-12 08:51:52</sys_created_on>
         <sys_id>c291b05b1b033010fc9540c6cc4bcbe0</sys_id>
-        <sys_mod_count>9</sys_mod_count>
+        <sys_mod_count>29</sys_mod_count>
         <sys_name>manage_api_connections</sys_name>
         <sys_package display_value="Integration Practice" source="x_173073_integrati">aa31b0531b033010fc9540c6cc4bcbd7</sys_package>
         <sys_policy>read</sys_policy>
         <sys_scope display_value="Integration Practice">aa31b0531b033010fc9540c6cc4bcbd7</sys_scope>
         <sys_update_name>sys_script_include_c291b05b1b033010fc9540c6cc4bcbe0</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2021-10-12 10:17:28</sys_updated_on>
+        <sys_updated_on>2021-10-16 09:56:15</sys_updated_on>
     </sys_script_include>
 </record_update>
